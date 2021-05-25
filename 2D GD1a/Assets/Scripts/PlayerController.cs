@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    private Vector2 moveInput;    
+    private Vector2 moveInput;
+
+    public Animator myAnim;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,9 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = moveInput * moveSpeed;
         }
+
+        myAnim.SetFloat("moveX", rb.velocity.x);
+        myAnim.SetFloat("moveY", rb.velocity.y);
                 
     }
 }
