@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class moveAway : MonoBehaviour
+public class MoveAway : MonoBehaviour
 {
 
-    public Transform player;
-    public float moveSpeed, range;
+    public Transform runTarget;
+    public float moveSpeed;
+    public float runRange;
 
     // Start is called before the first frame update
     void Start()
@@ -17,12 +18,11 @@ public class moveAway : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        range = Vector2.Distance(transform.position, player.position);
-        if (range < 2)
+        runRange = Vector2.Distance(transform.position, runTarget.position);
+
+        if (runRange < 2)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, -1 * moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, runTarget.position, -moveSpeed * Time.deltaTime);
         }
-        
-        
     }
 }

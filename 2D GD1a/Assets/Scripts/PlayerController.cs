@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = moveInput * moveSpeed;
         }
 
+        // Controls the Blend Tree animator
         myAnim.SetFloat("moveX", rb.velocity.x);
         myAnim.SetFloat("moveY", rb.velocity.y);
                 
