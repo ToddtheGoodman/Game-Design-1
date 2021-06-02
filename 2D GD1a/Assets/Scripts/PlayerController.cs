@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
     public float moveSpeed;
-    public float sprintSpeed;
+    public float sprintSpeed;    
 
     public Rigidbody2D rb;
 
@@ -23,10 +23,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Old movement script
-        //transform.Translate(Vector2.right * Time.deltaTime * moveSpeed * Input.GetAxis("Horizontal"));
-        //transform.Translate(Vector2.up * Time.deltaTime * moveSpeed * Input.GetAxis("Vertical"));
-
         // Our player movement input
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
@@ -34,7 +30,8 @@ public class PlayerController : MonoBehaviour
         // This fixes diagonal movement
         moveInput.Normalize();
 
-        // This moves the player
+        
+        // This moves the player and allows for Sprint
         if (Input.GetKey(KeyCode.LeftShift))
         {
             rb.velocity = moveInput * sprintSpeed;
@@ -44,9 +41,11 @@ public class PlayerController : MonoBehaviour
             rb.velocity = moveInput * moveSpeed;
         }
 
+       
         // Controls the Blend Tree animator
         myAnim.SetFloat("moveX", rb.velocity.x);
         myAnim.SetFloat("moveY", rb.velocity.y);
                 
     }
+
 }

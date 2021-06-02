@@ -5,9 +5,11 @@ using UnityEngine;
 public class MoveAway : MonoBehaviour
 {
 
-    public Transform runTarget;
-    public float moveSpeed;
-    public float runRange;
+    public Transform highlander;
+    public float fleeSpeed;
+    public float fleeDistance;
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,11 +20,14 @@ public class MoveAway : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        runRange = Vector2.Distance(transform.position, runTarget.position);
+        fleeDistance = Vector2.Distance(transform.position, highlander.transform.position);
 
-        if (runRange < 2)
+        if (fleeDistance < 2)
         {
-            transform.position = Vector2.MoveTowards(transform.position, runTarget.position, -moveSpeed * Time.deltaTime);
+            Debug.Log("less than 2");
+            transform.position = Vector2.MoveTowards(transform.position, highlander.transform.position, -fleeSpeed * Time.deltaTime);
         }
     }
+
+    
 }

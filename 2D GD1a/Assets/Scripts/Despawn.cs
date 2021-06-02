@@ -10,19 +10,19 @@ public class Despawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        despawnTimer = Random.Range(3, 10);
+        despawnTimer = Random.Range(5, 8);
     }
 
     // Update is called once per frame
     void Update()
     {
+
         despawnTimer -= Time.deltaTime;
-        // despawnTimer = despawnTimer - Time.deltaTime;
-        if (despawnTimer < 0)
+        //despawnTimer = despawnTimer - Time.deltaTime;
+        if (despawnTimer <= 0)
         {
             Destroy(gameObject);
         }
-
 
     }
 }
