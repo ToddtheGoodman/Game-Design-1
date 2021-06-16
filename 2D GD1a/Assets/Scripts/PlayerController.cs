@@ -6,14 +6,17 @@ public class PlayerController : MonoBehaviour
 {
 
     public float moveSpeed;
-    public float sprintSpeed;    
+    public float sprintSpeed;
 
     public Rigidbody2D rb;
 
+    public Camera cam;
+
     private Vector2 moveInput;
+    private Vector2 mouseDir;
 
     public Animator myAnim;
-
+       
     public static PlayerController instance;
 
     // Start is called before the first frame update
@@ -39,6 +42,10 @@ public class PlayerController : MonoBehaviour
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
 
+        // This finds our mouse position on the screen
+        mouseDir = cam.ScreenToWorldPoint(Input.mousePosition);
+
+
         // This fixes diagonal movement
         moveInput.Normalize();
 
@@ -52,6 +59,11 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = moveInput * moveSpeed;
         }
+
+        // this will rotate the player based on your MouseDir
+        Vector2 lookDir = mouseDir - rb.position;
+        float anglePlayer = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        rb.rotation = anglePlayer;
 
        
         // Controls the Blend Tree animator

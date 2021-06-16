@@ -20,11 +20,13 @@ public class MoveAway : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        highlander = GameObject.FindWithTag("Player").GetComponent<Transform>();
         fleeDistance = Vector2.Distance(transform.position, highlander.transform.position);
+        
 
         if (fleeDistance < 2)
         {
-            Debug.Log("less than 2");
+            //Debug.Log("less than 2");
             transform.position = Vector2.MoveTowards(transform.position, highlander.transform.position, -fleeSpeed * Time.deltaTime);
         }
     }
